@@ -16,6 +16,10 @@ Sistema de gestión de inventario de TI y recursos empresariales. Permite llevar
 | :---: | :---: | :---: |
 | ![Login](login.png) | ![Dashboard](dashboard.png) | ![Nuevo Ítem](nuevo_item.png) |
 
+| Categorías | Gestión de Equipos | Recursos TI |
+| :---: | :---: | :---: |
+| ![Categorías](categoria.png) | ![Añadir Equipo](agregar_equipo.png) | ![Recursos TI](recursos_ti.png) |
+
 ## ✨ Características Principales
 - **Dashboard:** Resumen en tiempo real del stock, alertas de ítems agotados y préstamos activos/vencidos.
 - **Inventario:** Gestión de ítems por categoría, control de cantidades mínimas y seguimiento de números de serie y ubicaciones.
