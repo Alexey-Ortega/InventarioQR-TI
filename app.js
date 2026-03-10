@@ -86,71 +86,10 @@ const Storage = {
         { id: 'cat_5', name: 'Otros', icon: '📦', color: '#94a3b8' },
         { id: 'cat_6', name: 'Salas de Juntas', icon: '👥', color: '#e83e8c' },
       ],
-      items: [
-        {
-          id: 'item_1', name: 'Toner HP 85A', categoryId: 'cat_1',
-          qty: 3, minQty: 2, location: 'Bodega TI', notes: 'Compatible HP P1102w / M1210',
-          serial: '', dateAdded: '2026-01-15', assignedTo: null
-        },
-        {
-          id: 'item_2', name: 'iPhone 13 – Gerencia', categoryId: 'cat_2',
-          qty: 1, minQty: 1, location: 'Préstamo', notes: 'IMEI: 356792834716283',
-          serial: 'C8GXP5HQP4', dateAdded: '2025-09-01', assignedTo: null
-        },
-        {
-          id: 'item_3', name: 'Cable HDMI 2m', categoryId: 'cat_4',
-          qty: 8, minQty: 3, location: 'Bodega TI', notes: '',
-          serial: '', dateAdded: '2025-11-20', assignedTo: null
-        },
-        {
-          id: 'item_4', name: 'Toner Brother TN-760', categoryId: 'cat_1',
-          qty: 1, minQty: 2, location: 'Bodega TI', notes: 'Impresora sala juntas',
-          serial: '', dateAdded: '2026-02-01', assignedTo: null
-        },
-        {
-          id: 'item_5', name: 'Laptop Dell Latitude 5520', categoryId: 'cat_3',
-          qty: 2, minQty: 1, location: 'TI', notes: 'Core i5 11th, 16GB RAM',
-          serial: 'DL5520X007', dateAdded: '2026-01-10', assignedTo: null
-        },
-        {
-          id: 'item_6', name: 'Sala de Juntas 1', categoryId: 'cat_6',
-          qty: 1, minQty: 1, location: 'Oficina', notes: '1 monitor o pantalla, 1 aire acondicionado',
-          serial: '', dateAdded: '2026-03-06', assignedTo: null
-        },
-        {
-          id: 'item_7', name: 'Sala de Juntas 2', categoryId: 'cat_6',
-          qty: 1, minQty: 1, location: 'Oficina', notes: '1 monitor o pantalla, 1 aire acondicionado',
-          serial: '', dateAdded: '2026-03-06', assignedTo: null
-        },
-        {
-          id: 'item_8', name: 'Sala de Juntas 3', categoryId: 'cat_6',
-          qty: 1, minQty: 1, location: 'Oficina', notes: '1 monitor o pantalla, 1 aire acondicionado',
-          serial: '', dateAdded: '2026-03-06', assignedTo: null
-        },
-        {
-          id: 'item_9', name: 'Sala de Juntas 4', categoryId: 'cat_6',
-          qty: 1, minQty: 1, location: 'Oficina', notes: '1 monitor o pantalla, 1 aire acondicionado',
-          serial: '', dateAdded: '2026-03-06', assignedTo: null
-        },
-      ],
-      employees: [
-        { id: 'emp_1', name: 'Ana García', area: 'Contabilidad', email: 'ana.garcia@empresa.com' },
-        { id: 'emp_2', name: 'Luis Martínez', area: 'Ventas', email: 'luis.martinez@empresa.com' },
-        { id: 'emp_3', name: 'Karla Durán', area: 'RRHH', email: 'karla.duran@empresa.com' },
-      ],
-      loans: [
-        {
-          id: 'loan_1', itemId: 'item_2', employeeId: 'emp_3',
-          dateOut: '2026-01-20', dateDue: '2026-02-20',
-          dateReturned: null, notes: 'Préstamo temporal'
-        }
-      ],
-      movements: [
-        { id: 'mov_1', itemId: 'item_1', type: 'in', qty: 5, date: '2026-01-15', notes: 'Compra inicial' },
-        { id: 'mov_2', itemId: 'item_1', type: 'out', qty: 2, date: '2026-02-10', notes: 'Uso impresoras planta' },
-        { id: 'mov_3', itemId: 'item_4', type: 'in', qty: 2, date: '2026-02-01', notes: 'Compra' },
-        { id: 'mov_4', itemId: 'item_4', type: 'out', qty: 1, date: '2026-02-15', notes: 'Reemplazo sala juntas' },
-      ],
+      items: [],
+      employees: [],
+      loans: [],
+      movements: [],
       computers: [],  // Inventario de equipos de cómputo
       recursos: {}      // Módulos Recursos TI
     };
@@ -1418,7 +1357,7 @@ Views.showComputerForm = function (computerId) {
       ${fi('fMarca', 'Marca', 'HP, Lenovo…', f.marca)}
       ${fi('fModelo', 'Modelo', 'ProBook 440 G9', f.modelo)}
       ${fi('fSerie', 'Nº de Serie *', '5CD2250R0M', f.serie)}
-      ${fi('fHostname', 'Hostname / Nombre equipo', 'CH4-AINIGUEZ', f.hostname)}
+      ${fi('fHostname', 'Hostname / Nombre equipo', 'PC-RECEPCION', f.hostname)}
       ${fi('fRam', 'RAM', '8 GB', f.ram)}
       ${fi('fRom', 'Almacenamiento', '256 GB', f.rom)}
       <div class="form-group" style="grid-column:1/-1">
@@ -1428,7 +1367,7 @@ Views.showComputerForm = function (computerId) {
       ${fi('fAsignado', 'Asignado a', 'Nombre completo', f.asignado)}
       ${fi('fPuesto', 'Puesto', 'Auxiliar contable', f.puesto)}
       ${fi('fDepartamento', 'Departamento', 'Administración', f.departamento)}
-      ${fi('fUbicacion', 'Ubicación', 'La Luna / El Salto', f.ubicacion)}
+      ${fi('fUbicacion', 'Ubicación', 'Sede Principal / Sucursal 1', f.ubicacion)}
       ${fi('fFechaCompra', 'Fecha de compra', '24/06/2022', f.fechaCompra)}
       ${fi('fGarantia', 'Garantía', '26/06/2023 o S/G', f.garantia)}
       ${fi('fFactura', 'Factura', 'F23677', f.factura)}
@@ -1790,8 +1729,8 @@ const RECURSOS_SCHEMA = {
       { key: 'notas', label: 'Notas', type: 'textarea' },
     ]
   },
-  appsCh4: {
-    label: 'Apps CH4', icon: '📱', fields: [
+  appsInternas: {
+    label: 'Apps Internas', icon: '📱', fields: [
       { key: 'nombre', label: 'App', type: 'text', required: true },
       { key: 'url', label: 'URL', type: 'text' },
       { key: 'usuario', label: 'Usuario', type: 'text' },
@@ -1809,8 +1748,8 @@ const RECURSOS_SCHEMA = {
       { key: 'notas', label: 'Notas', type: 'textarea' },
     ]
   },
-  paginaCh4: {
-    label: 'Página CH4', icon: '🌍', fields: [
+  paginaWeb: {
+    label: 'Página Web', icon: '🌍', fields: [
       { key: 'nombre', label: 'Nombre', type: 'text', required: true },
       { key: 'tipo', label: 'Tipo', type: 'text' },
       { key: 'url', label: 'URL', type: 'text' },
