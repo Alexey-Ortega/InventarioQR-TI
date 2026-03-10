@@ -46,12 +46,6 @@ Sistema de gestión de inventario de TI y recursos empresariales. Permite llevar
 
 Esta versión de demostración funciona de forma estática con datos pre-cargados al no tener bases de datos asignadas. 
 
-**Para correrlo localmente:**
-1. Clonar el repositorio.
-2. `npm install`
-3. `npm start`
-4. Visita `http://localhost:3001`
-
 **Credenciales de acceso de prueba:**
 - **Usuario:** demo
 - **Contraseña:** demo123
