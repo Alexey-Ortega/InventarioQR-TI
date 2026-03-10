@@ -8,8 +8,7 @@ Para la versión completa/privada, contacta al autor.
 Sistema de gestión de inventario de TI y recursos empresariales. Permite llevar un control detallado de equipos, préstamos, empleados, movimientos de stock y generación de códigos QR para identificación rápida de activos.
 
 ### 🎥 Demostración en Video
-*(Reemplaza este texto con el enlace a tu video en YouTube o carga el GIF aquí)*
-![Demo Video](ruta-a-tu-video-o-gif.gif)
+📺 [**Ver demostración completa en YouTube**](https://youtu.be/aLBN2mbiC24)
 
 ### 📸 Capturas de Pantalla
 | Pantalla de Acceso | Dashboard Principal | Creación de Ítems |
