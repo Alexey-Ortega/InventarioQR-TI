@@ -12,10 +12,9 @@ Sistema de gestión de inventario de TI y recursos empresariales. Permite llevar
 ![Demo Video](ruta-a-tu-video-o-gif.gif)
 
 ### 📸 Capturas de Pantalla
-*(Añade tus capturas aquí)*
-| Dashboard | Inventario y QR |
-| :---: | :---: |
-| ![Dashboard](ruta-a-imagen-1.png) | ![QR](ruta-a-imagen-2.png) |
+| Pantalla de Acceso | Dashboard Principal | Creación de Ítems |
+| :---: | :---: | :---: |
+| ![Login](login.png) | ![Dashboard](dashboard.png) | ![Nuevo Ítem](nuevo_item.png) |
 
 ## ✨ Características Principales
 - **Dashboard:** Resumen en tiempo real del stock, alertas de ítems agotados y préstamos activos/vencidos.
