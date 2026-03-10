@@ -15,7 +15,6 @@ const PORT = process.env.PORT || 3001;
 const TOKEN_SECRET = process.env.TOKEN_SECRET || 'CH4_INVENTARIO_SECURE_KEY_2024';
 
 const VALIDADMINS = {
-  'admin': 'admin123',
   'demo': 'demo123'
 };
 
