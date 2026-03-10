@@ -2153,16 +2153,9 @@ async function initApp() {
   // Cargar datos desde servidor (o localStorage si es local)
   await Storage.init();
 
-  const branch = sessionStorage.getItem('ti_branch');
   const branchNameElement = document.getElementById('sidebarBranchName');
   if (branchNameElement) {
-    if (branch === 'alberta') {
-      branchNameElement.textContent = 'Corporativo Alberta';
-    } else if (branch === 'salto') {
-      branchNameElement.textContent = 'Planta El Salto';
-    } else {
-      branchNameElement.textContent = 'Corporativo La luna';
-    }
+    branchNameElement.textContent = 'Demo Interactiva';
   }
 
   // Register views
