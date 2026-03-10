@@ -2129,9 +2129,20 @@ function setupLogin() {
         document.getElementById('loginPass').value = '';
       }
     } catch (ex) {
-      err.textContent = '❌ Error de conexión al servidor';
-      err.style.display = 'block';
-      console.error(ex);
+      // FE DEMO FALLBACK: Si falla la conexión (ej. alojado estático en Netlify sin backend)
+      if (u === 'demo' && p === 'demo123') {
+        sessionStorage.setItem('ti_auth', '1');
+        sessionStorage.setItem('ti_token', 'offline-demo-token');
+        sessionStorage.setItem('ti_user', 'demo');
+        sessionStorage.setItem('ti_branch', 'main');
+        ov.style.display = 'none';
+        err.style.display = 'none';
+        await initApp();
+      } else {
+        err.textContent = '❌ Credenciales inválidas para este entorno demo';
+        err.style.display = 'block';
+        console.error(ex);
+      }
     }
   });
 }
