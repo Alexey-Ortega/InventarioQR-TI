@@ -1,4 +1,9 @@
-# 📦 TI Inventario (Demo Pública)
+# 📦 InventarioQR-TI (Versión Demo Pública)
+
+Esta es una versión de demostración con datos ficticios y sin información sensible.  
+No contiene datos reales de sucursales, empleados ni contraseñas de producción.
+
+Para la versión completa/privada, contacta al autor.
 
 Sistema de gestión de inventario de TI y recursos empresariales. Permite llevar un control detallado de equipos, préstamos, empleados, movimientos de stock y generación de códigos QR para identificación rápida de activos.
 
