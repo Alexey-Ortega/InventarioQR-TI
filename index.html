@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description"
+    content="Sistema de inventario TI — gestión de equipos, consumibles, préstamos y códigos QR." />
+  <title>TI Inventario</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+    rel="stylesheet" />
+  <link rel="icon"
+    href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📦</text></svg>" />
+  <link rel="stylesheet" href="index.css" />
+  <!-- QR Code library (qrcodejs - synchronous, works in file://) -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+</head>
+
+<body>
+
+  <!-- Login Overlay -->
+  <div class="login-overlay" id="loginOverlay">
+    <div class="login-card">
+      <div class="login-logo">
+        <div class="logo-icon" style="font-size:2.6rem">💻</div>
+        <div class="login-title">TI Inventario</div>
+        <div class="login-sub">Acceso DEMO</div>
+      </div>
+      <form id="loginForm" autocomplete="off" style="display:flex;flex-direction:column;gap:14px">
+        <input type="hidden" id="loginBranch" value="main">
+        <div class="form-group" style="margin:0">
+          <label class="form-label">Usuario</label>
+          <input type="text" id="loginUser" class="form-input" placeholder="Usuario" autocomplete="off">
+        </div>
+        <div class="form-group" style="margin:0">
+          <label class="form-label">Contraseña</label>
+          <div style="display:flex;gap:6px">
+            <input type="password" id="loginPass" class="form-input" placeholder="Contraseña" style="flex:1"
+              autocomplete="off">
+            <button type="button" class="btn btn-secondary" style="padding:0 12px"
+              onclick="const i=document.getElementById('loginPass');i.type=i.type==='password'?'text':'password'">&#128065;</button>
+          </div>
+        </div>
+        <p id="loginErr" style="color:var(--danger);font-size:.82rem;margin:0;display:none"></p>
+        <button type="submit" class="btn btn-primary" style="width:100%;padding:10px">Iniciar sesión →</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Sidebar -->
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-header">
+      <div class="logo">
+        <div class="logo-icon" style="font-size: 2.2rem; margin-right: 8px;">📦</div>
+        <div class="logo-text">
+          <span class="logo-title">TI Inventario DEMO</span>
+          <span class="logo-sub" id="sidebarBranchName">Sistema de gestión</span>
+        </div>
+      </div>
+      <button class="sidebar-toggle" id="sidebarToggle" aria-label="Cerrar menú">✕</button>
+    </div>
+
+    <nav class="sidebar-nav">
+      <a class="nav-item active" data-view="dashboard" href="#dashboard" id="nav-dashboard">
+        <span class="nav-icon">📊</span><span class="nav-label">Dashboard</span>
+      </a>
+      <a class="nav-item" data-view="inventory" href="#inventory" id="nav-inventory">
+        <span class="nav-icon">📦</span><span class="nav-label">Inventario</span>
+      </a>
+      <a class="nav-item" data-view="loans" href="#loans" id="nav-loans">
+        <span class="nav-icon">🤝</span><span class="nav-label">Préstamos</span>
+        <span class="badge" id="loansActiveBadge" style="display:none"></span>
+      </a>
+      <a class="nav-item" data-view="employees" href="#employees" id="nav-employees">
+        <span class="nav-icon">👤</span><span class="nav-label">Empleados</span>
+      </a>
+      <a class="nav-item" data-view="movements" href="#movements" id="nav-movements">
+        <span class="nav-icon">📋</span><span class="nav-label">Movimientos</span>
+      </a>
+      <a class="nav-item" data-view="categories" href="#categories" id="nav-categories">
+        <span class="nav-icon">🏷️</span><span class="nav-label">Categorías</span>
+      </a>
+      <a class="nav-item" data-view="computers" href="#computers" id="nav-computers">
+        <span class="nav-icon">🖥️</span><span class="nav-label">Equipos de Cómputo</span>
+      </a>
+
+      <!-- Recursos TI -->
+      <div class="nav-section-label">📁 Recursos TI</div>
+      <a class="nav-item nav-child" data-view="wifi" href="#wifi" id="nav-wifi"><span class="nav-icon">📶</span><span
+          class="nav-label">WiFi</span></a>
+      <a class="nav-item nav-child" data-view="impresoras" href="#impresoras" id="nav-impresoras"><span
+          class="nav-icon">🖨️</span><span class="nav-label">Impresoras</span></a>
+      <a class="nav-item nav-child" data-view="wallpaper" href="#wallpaper" id="nav-wallpaper"><span
+          class="nav-icon">🖼️</span><span class="nav-label">Wallpaper</span></a>
+
+      <a class="nav-item nav-child" data-view="proveedores" href="#proveedores" id="nav-proveedores"><span
+          class="nav-icon">🏢</span><span class="nav-label">Proveedores</span></a>
+      <a class="nav-item nav-child" data-view="glpi" href="#glpi" id="nav-glpi"><span class="nav-icon">📋</span><span
+          class="nav-label">GLPI Guía</span></a>
+      <a class="nav-item nav-child" data-view="camaras" href="#camaras" id="nav-camaras"><span
+          class="nav-icon">📷</span><span class="nav-label">Cámaras</span></a>
+      <a class="nav-item nav-child" data-view="office" href="#office" id="nav-office"><span
+          class="nav-icon">💼</span><span class="nav-label">Office</span></a>
+      <a class="nav-item nav-child" data-view="vlan" href="#vlan" id="nav-vlan"><span class="nav-icon">🌐</span><span
+          class="nav-label">VLAN</span></a>
+      <a class="nav-item nav-child" data-view="appsInternas" href="#appsInternas" id="nav-appsInternas"><span
+          class="nav-icon">📱</span><span class="nav-label">Apps Internas</span></a>
+      <a class="nav-item nav-child" data-view="servidores" href="#servidores" id="nav-servidores"><span
+          class="nav-icon">🖥️</span><span class="nav-label">Servidores</span></a>
+      <a class="nav-item nav-child" data-view="paginaWeb" href="#paginaWeb" id="nav-paginaWeb"><span
+          class="nav-icon">🌍</span><span class="nav-label">Página Web</span></a>
+      <a class="nav-item nav-child" data-view="vpn" href="#vpn" id="nav-vpn"><span class="nav-icon">🔒</span><span
+          class="nav-label">VPN</span></a>
+      <a class="nav-item nav-child" data-view="anydesk" href="#anydesk" id="nav-anydesk"><span
+          class="nav-icon">🖱️</span><span class="nav-label">AnyDesk</span></a>
+    </nav>
+
+    <div class="sidebar-footer">
+      <div class="sidebar-footer-info">
+        <span id="totalItemsFooter">0</span> ítems · <span id="totalCatsFooter">0</span> categorías
+      </div>
+      <button id="logoutBtn" class="btn-logout">&#x1f511; Cerrar sesión</button>
+    </div>
+  </aside>
+
+  <!-- Main content -->
+  <div class="main-wrapper">
+    <header class="topbar">
+      <button class="menu-btn" id="menuBtn" aria-label="Abrir menú">☰</button>
+      <div class="topbar-title" id="viewTitle">Dashboard</div>
+      <div class="topbar-actions">
+        <button class="btn btn-primary" id="globalAddBtn">+ Agregar</button>
+      </div>
+    </header>
+
+    <main class="content" id="mainContent">
+      <!-- Views injected by JS -->
+    </main>
+  </div>
+
+  <!-- Modal -->
+  <div class="modal-overlay" id="modalOverlay">
+    <div class="modal" id="modal">
+      <div class="modal-header">
+        <h2 class="modal-title" id="modalTitle">Nuevo ítem</h2>
+        <button class="modal-close" id="modalClose">✕</button>
+      </div>
+      <div class="modal-body" id="modalBody"></div>
+    </div>
+  </div>
+
+  <!-- Toast -->
+  <div class="toast" id="toast"></div>
+
+  <script src="app.js?v=20240307"></script>
+</body>
+
+</html>
