@@ -45,10 +45,11 @@ Sistema de gestión de inventario de TI y recursos empresariales. Permite llevar
 
 ## 🚀 Acceso a la Demo y Ejecución Local
 
-**👉 [Abrir la Demo Interactiva en Línea](https://demoinventory.netlify.app/)**
+**👉 [Abrir la Demo Interactiva en Línea](https://demoinventary.netlify.app/)**
 
 Esta versión de demostración funciona de forma estática con datos pre-cargados al no tener bases de datos asignadas. 
 
 **Credenciales de acceso de prueba:**
 - **Usuario:** demo
 - **Contraseña:** demo123
+- 
